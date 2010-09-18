@@ -1,0 +1,14 @@
+
+* Peter Hanappe: Public API (BoincConfiguration.h, BoincError.h,
+  BoincHttp.h, BoincProxy.h, BoincScheduler.h), worked on almost all
+  other files.
+
+* Anthony Beurive: Public API (BoincConfiguration.h, BoincError.h,
+  BoincHttp.h, BoincProxy.h, BoincScheduler.h), and implementation of
+  platform dependent files for Cell OS (cellos/*).
+
+* Tangui Morlier: Public API (BoincConfiguration.h, BoincError.h,
+  BoincHttp.h, BoincProxy.h, BoincScheduler.h), implementation of
+  common functionality (src/*), implementation platform dependent
+  files for Linux (src/*), test suite (test/*), and autoconf/automake
+  setup.

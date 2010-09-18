@@ -1,0 +1,39 @@
+To test the library:
+	make testit
+
+To execute the scheduler ({src,example}/BoincLite.c):
+      ./src/BoincLite [<debug level>] (statically linked)
+      ./example/BoincLiteExample [<debug level>] (dynamically linked)
+
+To run last test case (in debug mode):
+       make testfirt
+
+Directory organisation:
+	  src/
+		sources & statically linked app (for gdb)
+	  lib/ 
+		library construction
+	  example/
+		client example
+	  test/
+		unitary & global tests
+	  include/
+		BoincLite.h header
+	  doc/
+		specifications
+
+CVS Tags & branches:
+
+ - cvs co -r SchedulerLiteBeta5 BoincLite
+	Scheduler lite v2 :
+		- one workunit 
+		- event queue
+		- HTTP download verification
+ - cvs co -r SchedulerLiteBeta4 BoincLite
+    	
+	Scheduler lite version :
+		  - one work unit
+		  - no event queue
+		  - mature api
+
+ - cvs HEAD : current developpment version

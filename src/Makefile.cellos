@@ -1,0 +1,50 @@
+
+CC = ppu-lv2-gcc
+CFLAGS += -g -O0 -std=c99 -I../include -I../../libzip-0.9/lib -I. -I../cellos/expat
+LD = ppu-lv2-g++
+LDFLAGS +=
+
+all: dirs libBoincLite.a
+
+sources = BoincConfiguration.c \
+	BoincError.c \
+	BoincProxy.c \
+	BoincScheduler.c \
+	BoincUtil.c \
+	BoincWorkUnit.c \
+	cellos/BoincHttp.c \
+	cellos/BoincMutex.c \
+	cellos/BoincHash.c \
+	cellos/BoincConfigurationOSCallbacks.c \
+	cellos/BoincXMLParser.c 
+
+objects = $(addprefix .obj/, ${sources:.c=.o})
+depends = $(addprefix .obj/, $(sources:.c=.d))
+
+libs = ../cellos/expat/libexpat.a
+
+
+libBoincLite.a: $(objects) 
+	ar cr $@ $^ 
+
+.obj/%.o: %.c
+	${CC} ${CFLAGS} -c $< -o $@
+
+.obj/%.d: %.c
+	@mkdir -p `dirname $@`
+	$(CC) $(CFLAGS) $< -M -MT .obj/$*.o -o $@
+
+.obj/cellos/%.d: cellos/%.c
+	@mkdir -p `dirname $@`
+	$(CC) $(CFLAGS) $< -M -MT .obj/$*.o -o $@
+
+dirs:
+	mkdir -p .obj/cellos
+
+clean: 
+	rm -rf .obj
+
+# Dependencies
+ifneq ($(MAKECMDGOALS),clean)
+-include $(depends)
+endif
